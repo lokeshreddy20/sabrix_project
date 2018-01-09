@@ -1,0 +1,20 @@
+---
+- hosts : webservers
+  tasks :
+      #create java directory
+    - file:
+        path: /home/vagrant/java1.7
+        state: directory
+        mode: 0755
+      # install java
+    - name : install java
+      copy : src=jdk-7u80-linux-x64.tar.gz dest=/home/vagrant/java1.7  mode=777
+
+      #command: tar xvf jdk-7u80-linux-x64.tar.gz -c /home/vagrant/ creates=/home/vagrant/java
+    - file:
+        path: /home/vagrant/jdk1.7
+        state: directory
+        mode: 0755
+    - unarchive:
+        src: jdk-7u80-linux-x64.tar.gz
+        dest: /home/vagrant/jdk1.7
